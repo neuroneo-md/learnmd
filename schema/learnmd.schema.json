@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/neuroneo-md/learnmd/schema/learnmd.schema.json",
+  "title": "LearnMD Frontmatter",
+  "description": "JSON Schema for the YAML frontmatter of a .learn.md file (Level 1).",
+  "type": "object",
+  "required": ["lang"],
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Lesson title. Inferred from the first # H1 heading if omitted."
+    },
+    "lang": {
+      "type": "string",
+      "description": "BCP 47 language tag (e.g. en, fr, es). Mandatory.",
+      "pattern": "^[a-z]{2}(-[A-Z]{2})?$"
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Free-form tags for discovery and filtering."
+    },
+    "estimated_time": {
+      "type": "string",
+      "description": "Human-readable estimated reading/study time. E.g. '15min', '1h'.",
+      "pattern": "^[0-9]+(min|h)$"
+    },
+    "author": {
+      "type": "string",
+      "description": "Author name or identifier. Displayed in the player if present."
+    }
+  },
+  "additionalProperties": false
+}
