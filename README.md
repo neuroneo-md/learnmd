@@ -6,7 +6,7 @@ A `.learn.md` file is valid Markdown — readable by humans, versionable in Git,
 
 ## Quick example
 
-```markdown
+````markdown
 ---
 lang: en
 tags: [python, variables]
@@ -39,7 +39,7 @@ name = "Alice"
 - Variable = name + value
 - Python infers types dynamically
 - Names are case-sensitive: `Age` ≠ `age`
-```
+````
 
 ## Key features
 
