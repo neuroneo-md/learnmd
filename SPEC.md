@@ -112,7 +112,9 @@ author: Jane Smith            # optional — string or {name, email, url}
 
 ### GFM callouts
 
-Callouts use GitHub Flavored Markdown syntax and are rendered with visual emphasis by compatible players:
+Callouts use GitHub Flavored Markdown syntax and are rendered with visual emphasis by compatible players.
+
+**Supported everywhere** (GitHub, Obsidian, neuroneo.md):
 
 | Syntax | Semantic | Typical use |
 |--------|----------|-------------|
@@ -120,6 +122,14 @@ Callouts use GitHub Flavored Markdown syntax and are rendered with visual emphas
 | `> [!tip]` | Tip | Best practice, shortcut, helpful advice |
 | `> [!warning]` | Warning | Common pitfall, frequent mistake |
 | `> [!important]` | Important | Critical point to remember |
+| `> [!caution]` | Caution | Risk of error or data loss |
+
+**Supported on Obsidian and neuroneo.md** (degrade gracefully to a blockquote on GitHub):
+
+| Syntax | Semantic | Typical use |
+|--------|----------|-------------|
+| `> [!summary]` | Summary | Key takeaways at the end of a lesson |
+| `> [!example]` | Example | Non-code illustrative example |
 
 ```markdown
 > [!warning]
@@ -133,8 +143,16 @@ Callouts use GitHub Flavored Markdown syntax and are rendered with visual emphas
 ```
 
 ```markdown
-> [!note]
-> The `type()` function returns the type of any Python object.
+> [!summary]
+> - Variables associate a name with a value
+> - Python infers types dynamically
+> - Names are case-sensitive: `Age` ≠ `age`
+```
+
+```markdown
+> [!example] Tokenising a sentence
+> Input: "Hello world!"
+> Tokens: ["Hello", " world", "!"]  → 3 tokens
 ```
 
 ---
@@ -183,37 +201,6 @@ The question starts with `?` followed by the question text. Answer choices use `
 | Single simple question | Inline ` ```quiz ` block |
 | Multiple questions, advanced scoring, or shared config | `!import ./file.quiz.md` directive |
 
-### ` ```example ` — Worked example
-
-A worked example with an optional title. Content is rendered with syntax highlighting.
-
-`````markdown
-```example title="Assigning and reassigning a variable"
-# First assignment
-score = 0
-print(score)   # → 0
-
-# Reassignment
-score = 42
-print(score)   # → 42
-```
-`````
-
-Supported attribute: `title:"..."` — title displayed as the block header.
-
-### ` ```summary ` — Summary box
-
-A summary or key-takeaways block, typically placed at the end of a lesson or module.
-
-`````markdown
-```summary
-- A variable associates a name with a value
-- Python does not require type declarations
-- Names are case-sensitive: `Age` ≠ `age`
-- Use `type()` to inspect the type of any object
-```
-`````
-
 ### Composition directives
 
 #### `!import <path>`
@@ -245,7 +232,7 @@ LearnMD uses the same math syntax as QuizMD. LaTeX formulas are rendered via KaT
 | Inline | `$E = mc^2$` | Embedded in the line of text |
 | Block (display) | `$$\int_0^\infty e^{-x}\,dx = 1$$` | Centered on its own line |
 
-Math may appear in any part of the document: body text, callouts, example blocks, summary blocks, and inline quiz questions.
+Math may appear in any part of the document: body text, callouts, and inline quiz questions.
 
 ```markdown
 The derivative is defined as:
@@ -276,10 +263,11 @@ The supported subset is **KaTeX** (see [katex.org/docs/support_table](https://ka
 | Tip callout | `> [!tip]` | 1 |
 | Warning callout | `> [!warning]` | 1 |
 | Important callout | `> [!important]` | 1 |
+| Caution callout | `> [!caution]` | 1 |
+| Summary callout | `> [!summary]` | 1 |
+| Example callout | `> [!example]` | 1 |
 | Inline quiz question | ` ```quiz ` | 2 |
 | Scored inline quiz | ` ```quiz scored:true ` | 2 |
-| Worked example | ` ```example title="..." ` | 2 |
-| Summary box | ` ```summary ` | 2 |
 
 ---
 
@@ -357,7 +345,8 @@ name = "Alice"  # str
 active = True   # bool
 ```
 
-```example title="Inspecting types"
+```python
+# Inspecting types
 print(type(25))       # <class 'int'>
 print(type(3.14))     # <class 'float'>
 print(type("hello"))  # <class 'str'>
@@ -370,12 +359,11 @@ print(type("hello"))  # <class 'str'>
 - [ ] str
 ```
 
-```summary
-- A variable associates a name with a value
-- Python infers types dynamically — no declaration required
-- Use `type()` to inspect the type of any object
-- Names are case-sensitive: `Age` ≠ `age`
-```
+> [!summary]
+> - A variable associates a name with a value
+> - Python infers types dynamically — no declaration required
+> - Use `type()` to inspect the type of any object
+> - Names are case-sensitive: `Age` ≠ `age`
 
 ## Module 2 — Conditions
 

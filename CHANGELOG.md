@@ -7,6 +7,16 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [0.2.2] — 2026-03-27
+
+### Changed
+- ` ```example ` and ` ```summary ` special blocks removed — replaced by GFM callouts `> [!example]` and `> [!summary]`
+- ` ```example ` with code content should use a language-fenced block (` ```python `, ` ```js `, etc.) instead
+- Added `> [!caution]`, `> [!summary]`, `> [!example]` to the callouts reference table
+- Note: `[!summary]` and `[!example]` degrade gracefully on GitHub (plain blockquote); render with full styling on Obsidian and neuroneo.md
+
+---
+
 ## [0.2.1] — 2026-03-27
 
 ### Changed

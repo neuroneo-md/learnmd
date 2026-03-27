@@ -31,13 +31,11 @@ Un LLM est un réseau de neurones profond entraîné à **prédire le prochain t
 
 Les LLMs ne lisent pas les mots directement. Ils découpent le texte en **tokens** — des fragments qui peuvent être des mots entiers, des morceaux de mots, ou des caractères de ponctuation.
 
-```example title:"Tokenisation d'une phrase"
-Phrase : "Les LLMs sont fascinants !"
-Tokens : ["Les", " LL", "Ms", " sont", " fascinants", " !"]
-
-→ 6 tokens pour 5 mots.
-Chaque token est converti en un vecteur numérique (embedding).
-```
+> [!example] Tokenisation d'une phrase
+> Phrase : "Les LLMs sont fascinants !"
+> Tokens : ["Les", " LL", "Ms", " sont", " fascinants", " !"]
+>
+> → 6 tokens pour 5 mots. Chaque token est converti en un vecteur numérique (embedding).
 
 > [!tip]
 > En pratique, l'anglais est tokenisé plus efficacement que le français. Le mot "fascinants" peut être découpé en plusieurs tokens alors que son équivalent anglais "fascinating" n'en formerait qu'un seul.
@@ -75,12 +73,11 @@ Objectif : `P(token_suivant | contexte_précédent)` — maximiser la probabilit
 Après des milliers de milliards d'exemples, le modèle développe une compréhension profonde de la langue et du monde.
 ```
 
-```example title:"Prédiction de token"
-Contexte : "La capitale de la France est"
-Token probable : " Paris" (très haute probabilité)
-Token moins probable : " Lyon" (faible probabilité)
-Token improbable : " banane" (probabilité quasi nulle)
-```
+> [!example] Prédiction de token
+> Contexte : "La capitale de la France est"
+> Token probable : " Paris" (très haute probabilité)
+> Token moins probable : " Lyon" (faible probabilité)
+> Token improbable : " banane" (probabilité quasi nulle)
 
 > [!warning]
 > Un LLM ne "comprend" pas au sens humain — il apprend des **distributions statistiques** sur des textes. Ses erreurs ("hallucinations") surviennent quand il génère des tokens plausibles mais factuellement faux.
@@ -103,13 +100,12 @@ Un LLM brut prédit des tokens mais ne sait pas "répondre" à des questions. Po
 
 Les LLMs traitent le texte dans une **fenêtre de contexte** — la quantité de tokens qu'ils peuvent "voir" simultanément.
 
-```example title:"Fenêtre de contexte"
-GPT-3    →  4 096 tokens  (~3 000 mots)
-GPT-4    → 128 000 tokens (~96 000 mots)
-Claude 3 → 200 000 tokens (~150 000 mots)
-
-Au-delà de cette limite, le modèle "oublie" ce qui est en dehors.
-```
+> [!example] Fenêtre de contexte
+> GPT-3    →   4 096 tokens  (~3 000 mots)
+> GPT-4    → 128 000 tokens (~96 000 mots)
+> Claude 3 → 200 000 tokens (~150 000 mots)
+>
+> Au-delà de cette limite, le modèle "oublie" ce qui est en dehors.
 
 > [!tip]
 > Contrairement à un humain, un LLM n'a **pas de mémoire persistante** entre les conversations. Chaque session repart de zéro — à moins qu'un système externe (RAG, mémoire applicative) ne lui réinjecte du contexte.
@@ -127,13 +123,12 @@ Pourquoi un LLM peut-il parfois générer des informations fausses présentées 
 
 ## Résumé
 
-```summary
-- Un **LLM** est un réseau de neurones entraîné à prédire des tokens sur des milliards de textes
-- Il repose sur l'architecture **Transformer** et son mécanisme d'**attention**
-- Le **pré-entraînement** lui donne une compréhension générale du langage et du monde
-- Le **fine-tuning + RLHF** le transforme en assistant capable de suivre des instructions
-- La **fenêtre de contexte** est sa mémoire de travail — limitée et non persistante
-- Les **hallucinations** découlent de la nature statistique de la génération de tokens
-```
+> [!summary]
+> - Un **LLM** est un réseau de neurones entraîné à prédire des tokens sur des milliards de textes
+> - Il repose sur l'architecture **Transformer** et son mécanisme d'**attention**
+> - Le **pré-entraînement** lui donne une compréhension générale du langage et du monde
+> - Le **fine-tuning + RLHF** le transforme en assistant capable de suivre des instructions
+> - La **fenêtre de contexte** est sa mémoire de travail — limitée et non persistante
+> - Les **hallucinations** découlent de la nature statistique de la génération de tokens
 
 !import ./intro-llm-quiz.quiz.md
