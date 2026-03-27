@@ -107,6 +107,7 @@ author: Jane Smith            # optional — string or {name, email, url}
 | `estimated_time` | No | string | Free-form estimated reading/study time: `15min`, `1h30`, `2h` |
 | `tags` | No | string[] | Thematic tags |
 | `author` | No | string or object | Author name, or `{name, email, url}` |
+| `spec_version` | No | string | LearnMD spec version this file targets (e.g. `"0.2"`) |
 
 `lang` is the only required field. All other fields are optional.
 
