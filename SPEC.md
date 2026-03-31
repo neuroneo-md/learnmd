@@ -203,6 +203,67 @@ The question starts with `?` followed by the question text. Answer choices use `
 | Single simple question | Inline ` ```quiz ` block |
 | Multiple questions, advanced scoring, or shared config | `!import ./file.quiz.md` directive |
 
+### Fenced callout blocks
+
+Fenced callout blocks are **Level 2 alternatives to GFM callouts** (`> [!...]`). They support richer content (multi-paragraph, nested lists, syntax-highlighted code) and are rendered with a visual header by compatible players. Non-compatible renderers display the raw content as a plain code block.
+
+**Supported block types:**
+
+| Language | Icon | Label | Typical use |
+|----------|------|-------|-------------|
+| ` ```note ` | 📝 | Note | Supplementary information |
+| ` ```tip ` | 💡 | Tip | Best practice or helpful advice |
+| ` ```warning ` | ⚠️ | Warning | Common pitfall, frequent mistake |
+| ` ```important ` | ❗ | Important | Critical point to remember |
+| ` ```caution ` | 🔴 | Caution | Risk of error or data loss |
+| ` ```summary ` | ✅ | Summary | Key takeaways at the end of a lesson |
+| ` ```example ` | 🔍 | Example | Illustrative example |
+| ` ```objectives ` | 🎯 | Learning Objectives | What the learner will achieve — place at top |
+
+**Basic syntax:**
+
+`````markdown
+```summary
+- Variables associate a **name** with a **value**
+- Python infers types dynamically — no declaration needed
+- Names are case-sensitive: `Age` ≠ `age`
+```
+`````
+
+**Optional title attribute** (`title:"..."`):
+
+`````markdown
+```example title:"Token prediction"
+Context: "The capital of France is"
+Most likely token: " Paris"
+Less likely token: " Lyon"
+```
+`````
+
+**Optional code language** — place the language identifier before `title:` to render the body as a syntax-highlighted code block:
+
+`````markdown
+```example python title:"Assigning and reassigning a variable"
+score = 0
+print(score)   # → 0
+
+score = 42
+print(score)   # → 42
+```
+`````
+
+When a code language is present, the block body is rendered as a syntax-highlighted code block inside the callout. When absent, the body is rendered as Markdown prose.
+
+**Fenced vs GFM callouts:**
+
+| Feature | GFM callout (`> [!...]`) | Fenced callout (` ```type `) |
+|---------|--------------------------|-------------------------------|
+| GitHub rendering | ✅ Native | ⚠️ Degrades to code block |
+| Multi-paragraph content | Limited | ✅ Full Markdown |
+| Syntax-highlighted code body | ❌ | ✅ via `lang` token |
+| Optional title | Limited | ✅ via `title:"..."` |
+| neuroneo.md rendering | ✅ | ✅ |
+
 ### Composition directives
 
 #### `!import <path>`
@@ -219,7 +280,7 @@ Includes content from another file at the current position. The file type is det
 
 Behavior:
 - The imported file's content is inserted at the position of the directive.
-- For `.learn.md`: frontmatter is ignored — only the content is included.
+- For `.learn.md`: the file's content is **rendered inline** at the insertion point — the section title appears as a visual divider and in the table of contents. Frontmatter (metadata) is ignored.
 - Imports are recursive: an imported file may itself contain `!import` directives.
 - Circular imports are silently skipped.
 
@@ -413,6 +474,13 @@ Subset(A, B)
 | Objectives callout | `> [!objectives]` | 1 |
 | Inline quiz question | ` ```quiz ` | 2 |
 | Scored inline quiz | ` ```quiz scored:true ` | 2 |
+| Note callout (fenced) | ` ```note ` | 2 |
+| Tip callout (fenced) | ` ```tip ` | 2 |
+| Warning callout (fenced) | ` ```warning ` | 2 |
+| Summary callout (fenced) | ` ```summary ` | 2 |
+| Example callout (fenced) | ` ```example [lang] [title:"..."] ` | 2 |
+| Objectives callout (fenced) | ` ```objectives ` | 2 |
+| Concept block | ` ```concept [id:slug] ` | 2 |
 | ABC (static) | ` ```abc ` ABC text ` ``` ` | 0 |
 | ABC (interactive) | ` ```abc play cursor colors ` ABC text ` ``` ` | 0 |
 

@@ -55,8 +55,7 @@ La variable `age` "pointe" vers l'objet entier `25`. Si on réassigne `age = 30`
 
 ## Affecter et réaffecter
 
-```python
-# Exemple : affecter et modifier une variable
+```example python title:"Affecter et modifier une variable"
 # Première affectation
 score = 0
 print(score)   # → 0
@@ -102,12 +101,13 @@ print(type(age))   # → <class 'int'>
 
 ## Résumé
 
-> [!summary]
-> - Une variable associe un **nom** à une **valeur** en mémoire
-> - En Python, pas de déclaration de type — le type est inféré dynamiquement
-> - Réaffectation libre : `x = 42` puis `x = "bonjour"` est valide
-> - Noms sensibles à la casse : `Age` ≠ `age`
-> - Préférez des noms descriptifs : `nombre_etudiants` plutôt que `n`
+```summary
+- Une variable associe un **nom** à une **valeur** en mémoire
+- En Python, pas de déclaration de type — le type est inféré dynamiquement
+- Réaffectation libre : `x = 42` puis `x = "bonjour"` est valide
+- Noms sensibles à la casse : `Age` ≠ `age`
+- Préférez des noms descriptifs : `nombre_etudiants` plutôt que `n`
+```
 
 ---
 
