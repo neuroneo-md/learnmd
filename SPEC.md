@@ -506,6 +506,14 @@ Mermaid diagram syntax is text-based and AI-generatable. When using MCP tools or
 
 Claude will emit a valid `` ```mermaid `` block directly in the `.learn.md` file.
 
+When generating Mermaid diagrams:
+
+- Prefer LR orientation for sequential flows with more than 5 steps
+- Keep node labels under 40 characters; use `\n` to break longer labels
+- Avoid linear chains longer than 6 nodes; introduce subgraphs or branches
+- Limit vertical depth to 7 levels maximum in TD orientation
+- Use TD only when the diagram has meaningful hierarchy (not just a sequence)
+
 ### Constraints
 
 - Mermaid is **auto-detected**: the Mermaid runtime is loaded only when a `` ```mermaid `` block is present.
