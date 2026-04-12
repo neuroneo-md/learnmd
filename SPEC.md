@@ -457,6 +457,115 @@ When generating Mermaid diagrams:
 
 ---
 
+---
+
+## Vega-Lite charts
+
+LearnMD supports **Vega-Lite** declarative JSON charts via `` ```vega-lite `` fenced blocks. Charts render client-side using [vega-embed](https://github.com/vega/vega-embed).
+
+Vega-Lite is the recommended renderer for statistical data visualization: bar charts, line charts, scatter plots, histograms, heatmaps, and faceted small multiples.
+
+### Syntax
+
+````markdown
+```vega-lite
+{
+  "$schema": "https://vega.github.io/vega-lite/v6.json",
+  "width": "container",
+  "mark": {"type": "bar"},
+  "data": {
+    "values": [
+      {"category": "A", "value": 30},
+      {"category": "B", "value": 80},
+      {"category": "C", "value": 55}
+    ]
+  },
+  "encoding": {
+    "x": {"field": "category", "type": "ordinal"},
+    "y": {"field": "value", "type": "quantitative"}
+  }
+}
+```
+````
+
+With attributes:
+
+````markdown
+```vega-lite caption:"Temperature anomalies 1880–2020" height:350 theme:vox
+{...JSON spec...}
+```
+````
+
+### Attributes
+
+| Attribute | Description | Example |
+|---|---|---|
+| `caption:"text"` | Caption below the chart | `caption:"Sales by year"` |
+| `height:value` | Chart height in pixels (integer) | `height:400` |
+| `theme:name` | Vega theme | `theme:dark` |
+
+### Supported themes
+
+`excel`, `dark`, `fivethirtyeight`, `ggplot2`, `googlecharts`, `latimes`, `powerbi`, `quartz`, `urbaninstitute`, `vox`
+
+### Guidelines for authors
+
+- Use `"width": "container"` in the JSON spec for responsive charts.
+- The block content must be valid JSON — no trailing commas, no comments.
+- Use Vega-Lite for: bar charts, line charts, scatter plots, histograms, heatmaps, faceted small multiples.
+- Use D3 when you need custom interaction, animated transitions, or a layout Vega-Lite cannot express.
+- Full reference: [vega.github.io/vega-lite](https://vega.github.io/vega-lite/)
+
+---
+
+## Chess diagrams
+
+LearnMD supports **chess board diagrams** via `` ```chess `` fenced blocks. Positions are specified in FEN notation; games can be replayed from PGN.
+
+### Syntax — FEN (position)
+
+````markdown
+```chess
+rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
+```
+````
+
+With attributes:
+
+````markdown
+```chess orientation:black size:480
+r1bqkb1r/pppp1ppp/2n2n2/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 4 4
+```
+````
+
+### Syntax — PGN (game replay)
+
+````markdown
+```chess pgn
+[Event "Example"]
+[White "Kasparov"]
+[Black "Deep Blue"]
+
+1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. b4 Bxb4 5. c3 Ba5
+```
+````
+
+### Attributes
+
+| Attribute | Description | Default | Example |
+|---|---|---|---|
+| `orientation:white\|black` | Board orientation | `white` | `orientation:black` |
+| `size:value` | Board width in pixels | `360` | `size:480` |
+| `pgn` | Force PGN parsing mode | auto-detect | `chess pgn` |
+
+### Guidelines for authors
+
+- Use FEN for static position diagrams — opening positions, tactical puzzles, endgame studies.
+- Use PGN with the `pgn` flag for interactive game replays with move navigation.
+- `orientation:black` is useful when explaining positions from Black's perspective.
+- FEN reference: [chessprogramming.org/FEN](https://www.chessprogramming.org/Forsyth-Edwards_Notation)
+
+
 ## Syntax reference table
 
 | Element | Syntax | Level |
@@ -491,6 +600,10 @@ When generating Mermaid diagrams:
 | ABC (interactive) | ` ```abc play cursor colors ` ABC text ` ``` ` | 0 |
 | Mermaid diagram | ` ```mermaid ` diagram text ` ``` ` | 0 |
 | Mermaid (with caption) | ` ```mermaid caption:"..." width:80% ` | 0 |
+| Vega-Lite chart | ` ```vega-lite ` JSON spec ` ``` ` | 0 |
+| Vega-Lite (with attrs) | ` ```vega-lite caption:"..." height:400 theme:vox ` | 0 |
+| Chess position (FEN) | ` ```chess ` FEN string ` ``` ` | 0 |
+| Chess game (PGN) | ` ```chess pgn ` PGN text ` ``` ` | 0 |
 
 ---
 
