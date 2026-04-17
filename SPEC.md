@@ -278,6 +278,9 @@ Includes content from another file at the current position. The file type is det
 !import ./check-variables.quiz.md
 ```
 
+> [!important]
+> **`!import` is the only supported directive for embedding quiz files.** There is no `!quiz` directive. Do not write `!quiz ./file.quiz.md` — it will not be recognized. Always use `!import ./file.quiz.md` regardless of whether the embedded file is a `.learn.md` or a `.quiz.md`.
+
 Behavior:
 - The imported file's content is inserted at the position of the directive.
 - For `.learn.md`: the file's content is **rendered inline** at the insertion point — the section title appears as a visual divider and in the table of contents. Frontmatter (metadata) is ignored.
